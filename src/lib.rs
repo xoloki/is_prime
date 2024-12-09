@@ -33,6 +33,18 @@ use std::str::FromStr;
 ///
 /// `n_str` is the string containing the integer to test its primality
 ///
+pub fn is_prime(n_str: &str) -> bool {
+    let n = BigUint::from_str(n_str).unwrap();
+
+    is_biguint_prime(n)
+}
+
+/// Tests if the given integer within a BigUint is prime
+///
+/// # Parameters
+///
+/// `n` is the BigUint containing the integer to test its primality
+///
 /// # Examples
 ///
 ///```
@@ -48,11 +60,9 @@ use std::str::FromStr;
 ///    assert!(is_prime("37975227936943673922808872755445627854565536638200") == false);
 ///}
 ///```
-pub fn is_prime(n_str: &str) -> bool {
+pub fn is_biguint_prime(n: BigUint) -> bool {
     // Translated from
     // https://rosettacode.org/wiki/Miller%E2%80%93Rabin_primality_test#Perl
-
-    let n = BigUint::from_str(n_str).unwrap();
 
     if n < BigUint::from(2u32) {
         return false;
